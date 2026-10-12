@@ -1,0 +1,24 @@
+# Producción en Easypanel (servicio de tipo Compose). Easypanel clona main de
+# GitHub y levanta este archivo; el Traefik de Easypanel publica el sitio con
+# certificado de Let's Encrypt.
+#
+# El dominio tiene que coincidir con `site.dominio` en src/config/site.ts
+# (URL canónica, sitemap y Open Graph se hornean en el build).
+services:
+  imanzanastore-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks: [easypanel]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.imanzanastore-web.rule=Host(`${WEB_DOMAIN:-web.imanzanastore.com.ar}`)"
+      - "traefik.http.routers.imanzanastore-web.tls=true"
+      - "traefik.http.routers.imanzanastore-web.tls.certresolver=letsencrypt"
+      - "traefik.http.services.imanzanastore-web.loadbalancer.server.port=3000"
+
+# "easypanel" es la red externa donde vive Traefik.
+networks:
+  easypanel:
+    external: true

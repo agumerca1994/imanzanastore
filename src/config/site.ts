@@ -17,7 +17,9 @@ export type Local = {
 
 export const site = {
   nombre: "iManzana Store",
-  dominio: "https://www.imanzanastore.com.ar",
+  // Dirección pública: la usan la URL canónica, el sitemap y Open Graph.
+  // Tiene que coincidir con el dominio de docker-compose.prod.yml.
+  dominio: "https://web.imanzanastore.com.ar",
   descripcion:
     "iPhone y accesorios con envío a todo el país. Consultá stock, precios y cuotas por WhatsApp.",
 

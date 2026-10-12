@@ -26,8 +26,18 @@ npm run build
 
 ## Producción
 
-Imagen Docker con el servidor standalone de Next (`Dockerfile`), pensada para
-Easypanel. Expone el puerto 3000.
+Se publica en **https://web.imanzanastore.com.ar** con Easypanel.
+
+1. En Easypanel, crear un servicio de tipo **Compose** desde este repo
+   (rama `main`) con el archivo `docker-compose.prod.yml`.
+2. Easypanel construye el `Dockerfile` (servidor standalone de Next, puerto
+   3000) y su Traefik publica el dominio con certificado de Let's Encrypt.
+3. Cada push a `main` se publica volviendo a desplegar el servicio.
+
+Para cambiar el dominio, cambiarlo en dos lugares: `WEB_DOMAIN` en
+`docker-compose.prod.yml` y `site.dominio` en `src/config/site.ts`.
+
+Para probar la imagen en local:
 
 ```bash
 docker build -t imanzanastore .
