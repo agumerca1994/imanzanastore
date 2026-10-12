@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Identidad tomada del Instagram de la marca: blanco y negro, tipografía
+   ancha y pesada. El verde es solo de WhatsApp (botones de contacto). */
+@theme {
+  --color-tinta: #0b0b0c;
+  --color-papel: #ffffff;
+  --color-niebla: #f3f3f1;
+  --color-grafito: #6b6b70;
+  --color-linea: #e4e4e1;
+  /* Verde WhatsApp oscurecido para que el texto blanco pase AA (5:1). */
+  --color-wa: #15803b;
+  --color-wa-oscuro: #0f6e32;
+
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos: Archivo en su ancho máximo, como el logo. */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-variation-settings: "wdth" 125;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+/* Se vacía el relleno y no el color: el trazo toma currentColor. */
+.contorno {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+}
+
+/* Cintas "LA TIENDA ONLINE": dos copias del texto seguidas y la pista se
+   desplaza media longitud, así el loop no tiene salto. */
+@keyframes cinta-izq {
+  to { transform: translateX(-50%); }
+}
+@keyframes cinta-der {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.cinta-izq { animation: cinta-izq 38s linear infinite; }
+.cinta-der { animation: cinta-der 46s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cinta-izq, .cinta-der { animation: none; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-tinta);
+  outline-offset: 3px;
 }
