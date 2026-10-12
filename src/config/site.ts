@@ -30,7 +30,7 @@ export const site = {
   },
 
   instagram: "https://www.instagram.com/store.imanzana/",
-  email: PENDIENTE,
+  email: "consultas@imanzanastore.com.ar",
 
   // null si la venta es solo online: la sección del local no se muestra.
   local: {
