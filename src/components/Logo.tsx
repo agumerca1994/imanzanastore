@@ -40,7 +40,7 @@ export function Logo({
   compacto = false,
 }: {
   variante?: Variante;
-  // Compacto: para el header, sin la línea de "Store · Catamarca".
+  // Compacto: para el header, más chico.
   compacto?: boolean;
 }) {
   const principal = variante === "claro" ? "text-tinta" : "text-papel";
@@ -57,7 +57,7 @@ export function Logo({
             compacto ? "text-[0.6rem] tracking-[0.32em]" : "text-[0.7rem] tracking-[0.38em]"
           }`}
         >
-          {compacto ? "Store" : "Store · Catamarca"}
+          Store
         </span>
       </span>
     </span>
